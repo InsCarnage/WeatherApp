@@ -29,6 +29,7 @@ function showPosition(position) {
 function items(weatherList){
 
     let Ydate = new Date(weatherList.dt_txt); 
+    console.log(Ydate);
     let date = weatherList.dt_txt; 
     let temp = weatherList.main.temp;
     let forWeather = weatherList.weather[0].description;
@@ -37,6 +38,7 @@ function items(weatherList){
     let day = date.slice(8,10);
     let getMonth = date.slice(5,7);
     let strDay = Ydate.getDay();
+    console.log(strDay);
     arrMonth.push(day,months[getMonth-1]);
     arrDay.push(day,temp);
     arrWeather.push(day,forWeather);
