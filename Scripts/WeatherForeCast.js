@@ -28,8 +28,9 @@ function showPosition(position) {
 
 function items(weatherList){
 
-    let Ydate = new Date(weatherList.dt_txt); 
-    console.log(Ydate);
+    let slicedDate = weatherList.dt_txt.slice(0,10);
+    let Ydate = new Date(slicedDate); 
+    console.log(Ydatep);
     let date = weatherList.dt_txt; 
     let temp = weatherList.main.temp;
     let forWeather = weatherList.weather[0].description;
