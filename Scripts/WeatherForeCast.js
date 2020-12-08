@@ -30,7 +30,7 @@ function items(weatherList){
 
     let slicedDate = weatherList.dt_txt.slice(0,10);
     let Ydate = new Date(slicedDate); 
-    console.log(Ydatep);
+    console.log(Ydate);
     let date = weatherList.dt_txt; 
     let temp = weatherList.main.temp;
     let forWeather = weatherList.weather[0].description;
