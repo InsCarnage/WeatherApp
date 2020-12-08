@@ -22,7 +22,7 @@ function showPosition(position) {
 }
 
 async function getAPI(Lat, Long){
-    const response = await fetch("https:api.openweathermap.org/data/2.5/weather?lat="+Lat+"&lon="+Long+"&appid=2f5c5e465bbf3515e51929ac50b00522&units=metric");
+    const response = await fetch("https://api.openweathermap.org/data/2.5/weather?lat="+Lat+"&lon="+Long+"&appid=2f5c5e465bbf3515e51929ac50b00522&units=metric");
     const data = await response.json();
 
     const Temp = data.main.temp;
