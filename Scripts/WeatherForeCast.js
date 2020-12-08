@@ -1,0 +1,108 @@
+
+
+
+var arrDay = [];
+var arrWeather = [];
+var arrhour=[];
+var arrstringDay=[];
+var arrMonth=[];
+var arrWeekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+var months = [ "January", "February", "March", "April", "May", "June", 
+           "July", "August", "September", "October", "November", "December" ];
+
+
+getLocation();
+
+function getLocation() {
+    if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+};
+
+function showPosition(position) {
+    getAPI(position.coords.latitude, position.coords.longitude);
+};
+
+
+function items(weatherList){
+
+    let Ydate = new Date(weatherList.dt_txt); 
+    let date = weatherList.dt_txt; 
+    let temp = weatherList.main.temp;
+    let forWeather = weatherList.weather[0].description;
+    let Speed =weatherList.wind.speed;
+    let hour = date.slice(11,16);
+    let day = date.slice(8,10);
+    let getMonth = date.slice(5,7);
+    let strDay = Ydate.getDay();
+    arrMonth.push(day,months[getMonth-1]);
+    arrDay.push(day,temp);
+    arrWeather.push(day,forWeather);
+    arrhour.push(day,hour);
+    arrstringDay.push(day,arrWeekday[strDay]);
+};
+
+
+function Together(){
+    console.log(arrDay);
+    var once = false;
+    str = `<div class="Cards">`;
+    
+    for(var i = 0; i <= arrDay.length -1 ; i=i+2){
+
+        if(arrDay[i]!=arrDay[i-2]){
+            str+= `<div class="Thours">
+            <h1>${arrstringDay[i+1]}</h1>
+            <h1>${arrDay[i]} ${arrMonth[i+1]}</h1>`;
+        }
+        if(arrDay[i]==arrDay[i+2]){
+            str+= `
+            <ul class="List">${arrhour[i+1]}
+            <li class="fTemp"><span>${arrDay[i+1]}</span></li>
+            <li class="fDescription"><span>${arrWeather[i+1]}</span></li>
+            </ul>
+            `;
+        }
+        if(arrDay[i]!=arrDay[i+2]){
+            str+= `
+            <ul class="List">${arrhour[i+1]}
+            <li><span>${arrDay[i+1]}</span></li>
+            <li><span>${arrWeather[i+1]}</li>
+            </ul>
+            `;
+            str+= `</div>`;
+        }
+        
+    };
+    str += `</div>`;
+    return str;
+};
+
+
+
+async function getAPI(Lat, Long){
+    const response = await fetch("https:api.openweathermap.org/data/2.5/forecast?lat="+Lat+"&lon="+Long+"&appid=2f5c5e465bbf3515e51929ac50b00522&units=metric");
+    const data = await response.json();
+    let city = data.city.name;
+ 
+    console.log(data);
+    document.getElementById("Header").innerHTML = `
+    Forecast for ${city}
+    ${data.list.map(items).join('')}
+    `;
+    document.getElementById("Items").innerHTML = Together();
+};
+
+//console.log(navigator.geolocation.getCurrentPosition());
+
+
+
+
+//http:api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=
+
+
+// NOW http://api.openweathermap.org/data/2.5/weather?q=Vanderbijlpark&appid=2f5c5e465bbf3515e51929ac50b00522&units=metric
+
+// list of forecast https://api.openweathermap.org/data/2.5/forecast?q=Vanderbijlpark&appid=2f5c5e465bbf3515e51929ac50b00522&units=metric
