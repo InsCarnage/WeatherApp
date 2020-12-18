@@ -6,27 +6,30 @@ var arrWeather = [];
 var arrhour=[];
 var arrstringDay=[];
 var arrMonth=[];
+var currstate ="";
 var arrWeekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 var months = [ "January", "February", "March", "April", "May", "June", 
            "July", "August", "September", "October", "November", "December" ];
 
 
-getLocation();
 
-function getLocation() {
-    if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-};
-
-function showPosition(position) {
-    getAPI(position.coords.latitude, position.coords.longitude);
-};
-
+function start(){
+    var cityname = document.getElementById('Sitem').value;
+    currstate =cityname;
+    arrDay = [];
+    arrWeather = [];
+    arrhour=[];
+    arrstringDay=[];
+    arrMonth=[];
+    if(cityname!=null){
+        getAPI(cityname);
+    } else{
+        document.getElementById("Header").innerHTML = `Please enter a value`;
+    };
+}
 
 function items(weatherList){
+    
 
     let slicedDate = weatherList.dt_txt.slice(0,10);
     let Ydate = new Date(slicedDate); 
@@ -45,6 +48,7 @@ function items(weatherList){
     arrWeather.push(day,forWeather);
     arrhour.push(day,hour);
     arrstringDay.push(day,arrWeekday[strDay]);
+    
 };
 
 
@@ -87,14 +91,15 @@ function Together(){
 
 
 
-async function getAPI(Lat, Long){
-    const response = await fetch("https://api.openweathermap.org/data/2.5/forecast?lat="+Lat+"&lon="+Long+"&appid=2f5c5e465bbf3515e51929ac50b00522&units=metric");
+async function getAPI(state){
+    const response = await fetch("https://api.openweathermap.org/data/2.5/forecast?q="+state+"&appid=2f5c5e465bbf3515e51929ac50b00522&units=metric");
     const data = await response.json();
-    let city = data.city.name;
+    
+    console.log(state);
  
     console.log(data);
     document.getElementById("Header").innerHTML = `
-    Forecast for ${city}
+    Forecast for ${state}
     ${data.list.map(items).join('')}
     `;
     document.getElementById("Items").innerHTML = Together();

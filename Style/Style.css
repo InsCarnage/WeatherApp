@@ -3,7 +3,6 @@ width: device-width ;
 zoom: 1.0 ;
 } 
 
-
 body{
     margin: 0;
     padding: 0;
@@ -119,3 +118,16 @@ hr.solid {
 /*Nav done*/
 
 
+
+
+/*Search*/
+
+
+
+.Search{
+    text-align: center;
+    
+}
+
+
+/*Search done*/
