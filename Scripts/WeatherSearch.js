@@ -16,6 +16,7 @@ var months = [ "January", "February", "March", "April", "May", "June",
 function start(){
     var cityname = document.getElementById('Sitem').value;
     currstate =cityname;
+    document.getElementById('Sitem').value ='';
     arrDay = [];
     arrWeather = [];
     arrhour=[];

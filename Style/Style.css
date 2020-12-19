@@ -145,7 +145,7 @@ hr.solid {
   }
   
   .form__field {
-    text-align: center;;
+    text-align: center;
     font-family: inherit;
     width: 20%;
     border: 0;
@@ -212,7 +212,7 @@ hr.solid {
     color: #45A29E;
     border-color: #9b9b9b;
     background: transparent;
-    margin-bottom: 25px;
+    margin-left: 25px;
     border-radius: 10px;
     text-align: center;
     cursor: pointer;
