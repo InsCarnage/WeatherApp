@@ -93,16 +93,19 @@ function Together(){
 
 async function getAPI(state){
     const response = await fetch("https://api.openweathermap.org/data/2.5/forecast?q="+state+"&appid=2f5c5e465bbf3515e51929ac50b00522&units=metric");
-    const data = await response.json();
-    
-    console.log(state);
- 
-    console.log(data);
-    document.getElementById("Header").innerHTML = `
-    Forecast for ${state}
-    ${data.list.map(items).join('')}
-    `;
-    document.getElementById("Items").innerHTML = Together();
+    try {
+        const data = await response.json();
+        console.log(state);
+        console.log(data);
+        document.getElementById("Header").innerHTML = `
+        Forecast for ${state}
+        ${data.list.map(items).join('')}
+        `;
+        document.getElementById("Items").innerHTML = Together();
+    } catch (error) {
+        document.getElementById("Header").innerHTML = `
+        Search for ${state} was not found`;
+    }
 };
 
 //console.log(navigator.geolocation.getCurrentPosition());

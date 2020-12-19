@@ -1,58 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Weather</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather</title>
 
 
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <link rel="stylesheet" href="Style/Style.css" >
-    <!--<script src="Scripts/WeatherNow.js"></script>-->
-    
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="Style/Style.css">
+  <!--<script src="Scripts/WeatherNow.js"></script>-->
+
 </head>
+
 <body>
-<!--Nav bar-->
-<div id="mySidenav" class="sidenav">
+  <!--Nav bar-->
+  <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="Index.html">Home</a>
     <a href="Myforecast.html">My forecast</a>
     <a href="Search.html">Search forecast</a>
   </div>
-  
 
-  <span style="font-size:30px;cursor:pointer" class="burger"onclick="openNav()">&#9776;</span>
-  
+
+  <span style="font-size:30px;cursor:pointer" class="burger" onclick="openNav()">&#9776;</span>
+
   <script>
-  function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-  }
-  
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-  }
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
   </script>
 
 
-<div class="Search">
-  <h1 id="Header">Search for area</h1>
-  <script src="Scripts/WeatherSearch.js"></script>
-  <input id="Sitem"><button class="btn" onclick="start()">GO</button>
-</div>
-    
-<div id="Temp">
+  <div class="Search">
+    <h1 id="Header"></h1>
+    <script src="Scripts/WeatherSearch.js"></script>
+    <input id="Sitem" type="input" class="form__field" placeholder="Search for City" required><button class="btn"onclick="start()">Search</button>
+  </div>
 
-</div>
+  <div id="Temp">
 
-<div id="List">
-    
-</div>
+  </div>
 
-<div id="Items"></div>
+  <div id="List">
+
+  </div>
+
+  <div id="Items"></div>
 
 
-<footer>
+  <footer>
     <div class="footer"></div>
-</footer>
+  </footer>
 
 </body>
