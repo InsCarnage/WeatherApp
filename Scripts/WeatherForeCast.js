@@ -6,6 +6,7 @@ var arrWeather = [];
 var arrhour=[];
 var arrstringDay=[];
 var arrMonth=[];
+var arrImage=[];
 var arrWeekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 var months = [ "January", "February", "March", "April", "May", "June", 
            "July", "August", "September", "October", "November", "December" ];
@@ -44,7 +45,35 @@ function items(weatherList){
     arrDay.push(day,temp);
     arrWeather.push(day,forWeather);
     arrhour.push(day,hour);
+    let image = "";
     arrstringDay.push(day,arrWeekday[strDay]);
+
+
+    switch(forWeather) {
+        
+        case "clear sky":
+            image = "sunny.svg";
+            break;
+        case "few clouds":
+            image = "sunnyclouds.svg";
+            break;
+        case "light rain":
+            image = "raining.svg";
+            break;
+        case  "overcast clouds":
+            image = "cloudy.svg";
+            break;
+        case  "scattered clouds":
+            image = "cloudy.svg";
+            break;
+        case  "broken clouds":
+            image = "sunnyclouds.svg";
+            break;
+          
+    }
+    arrImage.push(day,image);
+
+
 };
 
 
@@ -65,7 +94,7 @@ function Together(){
             <hr class="solid"></hr>
             <ul class="List">${arrhour[i+1]}
             <li class="fTemp"><span>${arrDay[i+1]} °C</span></li>
-            <li class="fDescription"><span>${arrWeather[i+1]}</span></li>
+            <li class="fDescription"><span>${arrWeather[i+1]}<img class="icon" src="img/${arrImage[i+1]}"></li>
             </ul>
             `;
         }
@@ -74,7 +103,7 @@ function Together(){
             <hr class="solid"></hr>
             <ul class="List">${arrhour[i+1]}
             <li><span>${arrDay[i+1]} °C</span></li>
-            <li><span>${arrWeather[i+1]}</li>
+            <li><span>${arrWeather[i+1]}<img class="icon" src="img/${arrImage[i+1]}"></li>
             </ul>
             `;
             str+= `</div>`;

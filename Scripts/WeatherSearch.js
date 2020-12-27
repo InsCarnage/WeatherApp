@@ -6,6 +6,7 @@ var arrWeather = [];
 var arrhour=[];
 var arrstringDay=[];
 var arrMonth=[];
+var arrImage=[];
 var currstate ="";
 var arrWeekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 var months = [ "January", "February", "March", "April", "May", "June", 
@@ -43,13 +44,37 @@ function items(weatherList){
     let day = date.slice(8,10);
     let getMonth = date.slice(5,7);
     let strDay = Ydate.getDay();
+    let image = "";
     //console.log(strDay);
     arrMonth.push(day,months[getMonth-1]);
     arrDay.push(day,temp);
     arrWeather.push(day,forWeather);
     arrhour.push(day,hour);
     arrstringDay.push(day,arrWeekday[strDay]);
-    
+
+    switch(forWeather) {
+        
+        case "clear sky":
+            image = "sunny.svg";
+            break;
+        case "few clouds":
+            image = "sunnyclouds.svg";
+            break;
+        case "light rain":
+            image = "raining.svg";
+            break;
+        case  "overcast clouds":
+            image = "cloudy.svg";
+            break;
+        case  "scattered clouds":
+            image = "cloudy.svg";
+            break;
+        case  "broken clouds":
+            image = "sunnyclouds.svg";
+            break;
+          
+    }
+    arrImage.push(day,image);
 };
 
 
@@ -70,7 +95,7 @@ function Together(){
             <hr class="solid"></hr>
             <ul class="List">${arrhour[i+1]}
             <li class="fTemp"><span>${arrDay[i+1]} °C</span></li>
-            <li class="fDescription"><span>${arrWeather[i+1]}</span></li>
+            <li class="fDescription"><span>${arrWeather[i+1]}<img class="icon" src="img/${arrImage[i+1]}"></span></li>       
             </ul>
             `;
         }
@@ -79,7 +104,7 @@ function Together(){
             <hr class="solid"></hr>
             <ul class="List">${arrhour[i+1]}
             <li><span>${arrDay[i+1]} °C</span></li>
-            <li><span>${arrWeather[i+1]}</li>
+            <li><span>${arrWeather[i+1]}<img class="icon" src="img/${arrImage[i+1]}"></li>
             </ul>
             `;
             str+= `</div>`;
@@ -104,6 +129,7 @@ async function getAPI(state){
         `;
         document.getElementById("Items").innerHTML = Together();
     } catch (error) {
+        console.log(error);
         document.getElementById("Header").innerHTML = `
         Search for ${state} was not found`;
     }
