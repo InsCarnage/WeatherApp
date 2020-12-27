@@ -95,7 +95,10 @@ function Together(){
             <hr class="solid"></hr>
             <ul class="List">${arrhour[i+1]}
             <li class="fTemp"><span>${arrDay[i+1]} °C</span></li>
-            <li class="fDescription"><span>${arrWeather[i+1]}<img class="icon" src="img/${arrImage[i+1]}"></span></li>       
+            <li class="fDescription"><span>${arrWeather[i+1]} <object class="icon"type="image/svg+xml" data="img/${arrImage[i+1]}"></object> </span></li>    
+            
+            
+
             </ul>
             `;
         }
@@ -104,7 +107,7 @@ function Together(){
             <hr class="solid"></hr>
             <ul class="List">${arrhour[i+1]}
             <li><span>${arrDay[i+1]} °C</span></li>
-            <li><span>${arrWeather[i+1]}<img class="icon" src="img/${arrImage[i+1]}"></li>
+            <li class="fDescription"><span>${arrWeather[i+1]} <object class="icon" type="image/svg+xml" data="img/${arrImage[i+1]}"></object> </span></li> 
             </ul>
             `;
             str+= `</div>`;
